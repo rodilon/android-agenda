@@ -39,7 +39,7 @@ public class FormularioActivity extends AppCompatActivity {
             case R.id.menu_formulario_ok:
 
                 Aluno aluno = helper.pegaAluno();
-                Toast.makeText(FormularioActivity.this, "Aluno "+ aluno.getNome() +"salvo!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(FormularioActivity.this, "Aluno "+ aluno.getNome() +" salvo!", Toast.LENGTH_SHORT).show();
                 finish();
                 break;
         }
