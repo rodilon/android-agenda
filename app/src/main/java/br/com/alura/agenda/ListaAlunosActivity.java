@@ -8,6 +8,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import java.util.List;
+
+import br.com.alura.agenda.dao.AlunoDAO;
+import br.com.alura.agenda.modelo.Aluno;
+
 public class ListaAlunosActivity extends AppCompatActivity { //COMPORTAMENTO DA NOSSA TELA!!!
 
     @Override
@@ -15,10 +20,7 @@ public class ListaAlunosActivity extends AppCompatActivity { //COMPORTAMENTO DA 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_alunos); //de onde vem o conteúdo da nossa tela
 
-        String[] alunos = {"Daniel", "Ronaldo", "Jeferson", "Felipe", "Daniel", "Ronaldo", "Jeferson", "Felipe", "Daniel", "Ronaldo", "Jeferson", "Felipe"};
-        ListView listaAlunos = findViewById(R.id.lista_alunos);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, alunos);
-        listaAlunos.setAdapter(adapter);
+        //carregaLista();
 
         final Button novoAluno = findViewById(R.id.botao_novo_aluno);
         novoAluno.setOnClickListener(new View.OnClickListener() {
@@ -28,8 +30,21 @@ public class ListaAlunosActivity extends AppCompatActivity { //COMPORTAMENTO DA 
                 startActivity(intentVaiProFormulario);
             }
         });
-
     }
 
+    private void carregaLista() {
+        AlunoDAO dao = new AlunoDAO(this);
+        List<Aluno> alunos = dao.buscaAlunos();
+        dao.close();
 
+        ListView listaAlunos = findViewById(R.id.lista_alunos);
+        ArrayAdapter<Aluno> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, alunos);
+        listaAlunos.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        carregaLista();
+    }
 }
