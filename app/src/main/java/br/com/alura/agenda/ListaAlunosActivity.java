@@ -24,8 +24,20 @@ public class ListaAlunosActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_alunos); //de onde vem o conteúdo da nossa tela
-
         listaAlunos = findViewById(R.id.lista_alunos);
+
+        listaAlunos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> lista, View item, int position, long id) {
+                Aluno aluno = (Aluno) listaAlunos.getItemAtPosition(position);
+
+                Intent intentVaiProFormulario = new Intent(ListaAlunosActivity.this, FormularioActivity.class);
+                intentVaiProFormulario.putExtra("aluno" , aluno); //identifica oq vamos passar para o proxima Activity
+                startActivity(intentVaiProFormulario);
+            }
+        });
+
+
         Button novoAluno = findViewById(R.id.botao_novo_aluno);
         novoAluno.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,9 +74,17 @@ public class ListaAlunosActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
                 Aluno aluno = (Aluno) listaAlunos.getItemAtPosition(info.position);
-                Toast.makeText(ListaAlunosActivity.this, "Deletar o aluno "+ aluno.getNome(), Toast.LENGTH_SHORT).show();
+
+                AlunoDAO dao = new AlunoDAO(ListaAlunosActivity.this);
+
+                dao.deleta(aluno);
+                dao.close();
+                carregaLista();
+
                 return false;
             }
         });
+
+
     }
 }
