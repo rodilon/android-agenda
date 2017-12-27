@@ -49,6 +49,7 @@ public class FormularioActivity extends AppCompatActivity {
                 Intent intentCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 caminhoFoto = getExternalFilesDir(null) + "/" + System.currentTimeMillis() +  ".jpg";
                 File arquivoFoto = new File(caminhoFoto);
+
                 intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(arquivoFoto));
                 startActivityForResult(intentCamera, CODIGO_CAMERA);
 
@@ -61,11 +62,7 @@ public class FormularioActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode == RESULT_OK){
             if(requestCode == CODIGO_CAMERA){
-                ImageView foto = findViewById(R.id.formulario_foto);
-                Bitmap bitmap = BitmapFactory.decodeFile(caminhoFoto);
-                Bitmap bitmapReduzido = Bitmap.createScaledBitmap(bitmap, 300, 300, true);
-                foto.setImageBitmap(bitmapReduzido);
-                foto.setScaleType(ImageView.ScaleType.FIT_XY);
+                helper.carregaImagem(caminhoFoto);
             }
         }
 
