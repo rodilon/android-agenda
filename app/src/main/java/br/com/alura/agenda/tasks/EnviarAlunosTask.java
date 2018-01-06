@@ -1,4 +1,4 @@
-package br.com.alura.agenda;
+package br.com.alura.agenda.tasks;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -10,6 +10,7 @@ import java.util.List;
 import br.com.alura.agenda.converter.AlunoConverter;
 import br.com.alura.agenda.dao.AlunoDAO;
 import br.com.alura.agenda.modelo.Aluno;
+import br.com.alura.agenda.web.WebClient;
 
 /**
  * Created by renan on 04/01/2018.
