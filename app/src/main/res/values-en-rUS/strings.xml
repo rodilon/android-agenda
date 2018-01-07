@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Notebook</string>
+    <string name="formulario_agenda">Form</string>
+    <string name="formulario_nome">Name</string>
+    <string name="formulario_endereco">Address</string>
+    <string name="formulario_telefone">Telephone</string>
+    <string name="formulario_site">Site</string>
+</resources>
