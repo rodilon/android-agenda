@@ -1,12 +1,13 @@
 package br.com.alura.agenda.modelo;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by renan on 09/01/2018.
  */
 
-public class Prova {
+public class Prova implements Serializable{
     public Prova(String materia, String data, List<String> topicos) {
         this.materia = materia;
         this.data = data;
