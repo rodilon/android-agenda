@@ -12,4 +12,9 @@
         android:icon="@drawable/ic_receber"
         app:showAsAction="always"
         android:title="Baixar notas" />
+    <item
+        android:id="@+id/menu_abrir_mapa"
+        android:icon="@drawable/ic_mapa"
+        app:showAsAction="always"
+        android:title="Visualizar no mapa" />
 </menu>
