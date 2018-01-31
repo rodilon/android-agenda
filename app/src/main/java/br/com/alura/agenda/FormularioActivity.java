@@ -53,7 +53,6 @@ public class FormularioActivity extends AppCompatActivity {
 
                 intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(FormularioActivity.this, BuildConfig.APPLICATION_ID + ".provider", arquivoFoto));
                 startActivityForResult(intentCamera, CODIGO_CAMERA);
-
             }
         });
 

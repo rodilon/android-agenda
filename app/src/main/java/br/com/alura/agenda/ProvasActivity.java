@@ -15,8 +15,8 @@ public class ProvasActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_provas);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction tx = fragmentManager.beginTransaction();
+        FragmentManager fragmentManager = getSupportFragmentManager(); //especialista em manipular telas
+        FragmentTransaction tx = fragmentManager.beginTransaction(); //substituir a tela (começar)
 
         tx.replace(R.id.frame_principal, new ListaProvasFragment());
         if(estaNoModoPaisagem()){
@@ -32,8 +32,22 @@ public class ProvasActivity extends AppCompatActivity {
     public void selecionaProva(Prova prova) {
 
         FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction tx = manager.beginTransaction();
-        tx.replace(R.id.frame_principal, new DetalhesProvaFragment());
-        tx.commit();
+        if(!estaNoModoPaisagem()){
+            FragmentTransaction tx = manager.beginTransaction();
+
+            DetalhesProvaFragment detalhesFragment = new DetalhesProvaFragment();
+            Bundle parametros = new Bundle();
+            parametros.putSerializable("prova", prova);
+            detalhesFragment.setArguments(parametros);
+
+            tx.replace(R.id.frame_principal, detalhesFragment);
+
+            tx.addToBackStack(null);
+            tx.commit();
+        }else{
+            DetalhesProvaFragment detalhesFragment = (DetalhesProvaFragment) manager.findFragmentById(R.id.frame_secundario);
+            detalhesFragment.populaCamposCom(prova);
+        }
+
     }
 }
