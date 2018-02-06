@@ -62,6 +62,16 @@ public class ListaAlunosActivity extends AppCompatActivity {
                     new String[]{Manifest.permission.RECEIVE_SMS}, 124);
         }
 
+        if (ActivityCompat.checkSelfPermission(ListaAlunosActivity.this, android.Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(ListaAlunosActivity.this, android.Manifest.permission.ACCESS_COARSE_LOCATION)
+                        != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(ListaAlunosActivity.this,
+                    new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 125);
+            ActivityCompat.requestPermissions(ListaAlunosActivity.this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 126);
+        }
+
     }
 
     @Override
@@ -84,7 +94,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
                 startActivity(vaiParaProvas);
                 break;
             case R.id.menu_abrir_mapa:
-                Intent vaiParaMapa = new Intent(this, MapsActivity.class);
+                Intent vaiParaMapa = new Intent(this, MapaAlunosActivity.class);
                 startActivity(vaiParaMapa);
                 break;
         }
