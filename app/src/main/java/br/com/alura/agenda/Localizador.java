@@ -60,11 +60,6 @@ public class Localizador implements GoogleApiClient.ConnectionCallbacks, Locatio
     public void onLocationChanged(Location location) {
 
         LatLng coordenada = new LatLng(location.getLatitude(), location.getLongitude());
-        MarkerOptions marcador = new MarkerOptions();
-        marcador.position(coordenada);
-        marcador.title("Teste");
-        marcador.snippet("9.0");
-        mapa.addMarker(marcador);
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLng(coordenada);
         mapa.moveCamera(cameraUpdate);
 

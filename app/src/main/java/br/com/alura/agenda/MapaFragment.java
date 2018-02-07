@@ -22,7 +22,7 @@ import br.com.alura.agenda.modelo.Aluno;
  * Created by renan on 05/02/2018.
  */
 
-public class MapaFragmant extends SupportMapFragment implements OnMapReadyCallback {
+public class MapaFragment extends SupportMapFragment implements OnMapReadyCallback {
 
     @Override
     public void onCreate(Bundle bundle) {
